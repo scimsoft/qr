@@ -10,12 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 class QRRedirectController extends Controller
 {
 
-    public function redirect($index){
-        Log::debug('index '.$index);
-        $qrredirect = QRRedirect::where('soureURL','=',$index)->first();
-        Log::debug('Destiny '.$qrredirect->id);
-        return Redirect::to($qrredirect->destinyURL);
-    }
+
     /**
      * Display a listing of the resource.
      *

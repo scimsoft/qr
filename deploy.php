@@ -23,7 +23,7 @@ add('writable_dirs', []);
 // Hosts
 
 host('comer.playaalta.com')
-    ->set('deploy_path', '/var/www/mobiletender');
+    ->set('deploy_path', '/var/www/qr');
     
 // Tasks
 

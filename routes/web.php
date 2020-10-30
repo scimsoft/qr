@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\QRRedirectController;
+use App\Http\Controllers\RedirectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{id}', [QRRedirectController::class, 'redirect'] );
+
 
 Route::resource('qrredirect', QRRedirectController::class);
+
+Route::get('/{id}', [RedirectController::class, 'redirect'] );
