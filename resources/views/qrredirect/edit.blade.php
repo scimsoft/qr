@@ -44,14 +44,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>active:</strong>
-                    <input type="text" name="location" class="form-control" placeholder="{{ $qrredirect->active }}"
+                    <input type="text" name="active" class="form-control" placeholder="{{ $qrredirect->active }}"
                            value="{{ $qrredirect->active }}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>user_id:</strong>
-                    <input type="number" name="cost" class="form-control" placeholder="{{ $qrredirect->user_id }}"
+                    <input type="number" name="user_id" class="form-control" placeholder="{{ $qrredirect->user_id }}"
                            value="{{ $qrredirect->user_id }}">
                 </div>
             </div>
