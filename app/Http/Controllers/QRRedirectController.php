@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\QRRedirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
@@ -92,13 +93,16 @@ class QRRedirectController extends Controller
     public function update(Request $request, QRRedirect $qRRedirect)
     {
         //
-        $request->validate([
-            'soureURL' => 'required',
-            'destinyURL' => 'required',
-            'active' => 'required',
-            'user_id' => 'required'
-        ]);
-        $qRRedirect->update($request->all());
+//        $request->validate([
+//            'soureURL' => 'required',
+//            'destinyURL' => 'required',
+//            'active' => 'required',
+//            'user_id' => 'required'
+//        ]);
+       
+        $ret=$qRRedirect->update($request->all());
+       // dd($ret);
+dd($request->all());
 
         return redirect()->route('qrredirect.index')
             ->with('success', 'Project updated successfully');

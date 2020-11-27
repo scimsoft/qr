@@ -41,11 +41,11 @@
                     <form action="{{ route('qrredirect.destroy', $project->id) }}" method="POST">
 
                         <a href="{{ route('qrredirect.show', $project->id) }}" title="show">
-                            <i class="fas fa-eye text-success  fa-lg"></i>
+                            <i class="fas fa-eye text-success  fa-lg">ver</i>
                         </a>
 
                         <a href="{{ route('qrredirect.edit', $project->id) }}">
-                            <i class="fas fa-edit  fa-lg"></i>
+                            <i class="fas fa-edit  fa-lg">edit</i>
 
                         </a>
 
@@ -53,7 +53,7 @@
                         @method('DELETE')
 
                         <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                            <i class="fas fa-trash fa-lg text-danger"></i>
+                            <i class="fas fa-trash fa-lg text-danger">del</i>
 
                         </button>
                     </form>

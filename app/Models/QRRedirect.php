@@ -18,7 +18,6 @@ class QRRedirect extends Model
     protected $fillable = [
         'soureURL',
         'destinyURL',
-        'created_at',
         'active',
         'user_id'
     ];

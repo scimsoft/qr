@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\QRRedirectController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::resource('qrredirect', QRRedirectController::class);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+Route::resource('qrredirect', QRRedirectController::class)->middleware(Authenticate::class);
 
 Route::get('/{id}', [RedirectController::class, 'redirect'] );
+
+
+

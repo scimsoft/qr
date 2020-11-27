@@ -18,8 +18,8 @@ class CreateQRRedirectsTable extends Migration
             $table->timestamps();
             $table->string("soureURL");
             $table->string("destinyURL");
-            $table->boolean("active");
-            $table->bigInteger("user_id");
+            $table->boolean("active")->default(true);
+            $table->bigInteger("user_id")->default(1);
         });
     }
 
