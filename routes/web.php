@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
 Auth::routes();
 Route::resource('qrredirect', QRRedirectController::class)->middleware(Authenticate::class);
 

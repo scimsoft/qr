@@ -20,7 +20,7 @@ class QRRedirectController extends Controller
     public function index()
     {
         //
-        $qrredirect = QRRedirect::latest()->paginate(5);
+        $qrredirect = QRRedirect::latest()->paginate(50);
 
         return view('qrredirect.index', compact('qrredirect'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
