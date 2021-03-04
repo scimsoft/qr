@@ -18,7 +18,7 @@
                         <br>
                         <a href="qrredirect" class="btn btn-primary">Configuracion de enlaces</a>
                         <br><br>
-                    <a href="generator" class="btn btn-primary">Generate Qr</a>
+                    <a href="qrcode" class="btn btn-primary">Generate Qr</a>
                 </div>
             </div>
         </div>

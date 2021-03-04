@@ -1,0 +1,16 @@
+canvas:before, canvas:after {
+    position: absolute;
+    content: '';
+    border: solid black;
+    z-index: -1;
+}
+canvas:before {
+    top: -32px; bottom: -32px;
+    left: 16px; right: 16px;
+    border-width: 0 1px;
+}
+canvas:after {
+    left: -32px; right: -32px;
+    top: 16px; bottom: 16px;
+    border-width: 1px 0;
+}
