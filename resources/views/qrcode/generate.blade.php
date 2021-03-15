@@ -13,9 +13,9 @@
             height: 250,
             data: "{{$link}}",
             margin: 50,
-            image: "kniveandfork.svg",
+            image: "",
             dotsOptions: {
-                color: "#ff9900",
+                color: "#00186e",
                 type: "classy-rounded"
             },
             backgroundOptions: {
@@ -34,6 +34,8 @@
         });
 
         qrCode.append(document.getElementById("canvas"));
+
+
 
     </script>
 @endforeach
