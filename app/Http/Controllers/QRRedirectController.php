@@ -102,7 +102,7 @@ class QRRedirectController extends Controller
        
         $ret=$qRRedirect->update($request->all());
        // dd($ret);
-dd($request->all());
+//dd($request->all());
 
         return redirect()->route('qrredirect.index')
             ->with('success', 'Project updated successfully');
