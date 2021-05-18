@@ -4,7 +4,15 @@
 @section('content')
 <div id="canvas"></div>
 @foreach($links as $link)
-
+    <h2>La Tertulia</h2>
+    <h3>Para pedir desde la mesa:</h3>
+    <h3>&nbsp;</h3>
+    <h3>1. Escanea el QR</h3>
+    <h3>2. Añadir productos</h3>
+    <h3>3. Pulsa la cesta</h3>
+    <h3>4. Pulsa el boton pedir</h3>
+    <h3>Gracias</h3>
+    <h3>&nbsp;</h3>
     <script type="text/javascript">
 
 
