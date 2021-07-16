@@ -4,12 +4,14 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD </h2>
+                <h2>QR configurado </h2>
             </div>
+            @if(Auth::user()->isAdmin())
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('qrredirect.create') }}" title="Create a redirect"> <i class="fas fa-plus-circle"></i>
+                <a class="btn btn-success" href="{{ route('qrredirect.create') }}" title="Create a redirect"> Nuevo QR
                 </a>
             </div>
+                @endif
         </div>
     </div>
 
@@ -29,39 +31,39 @@
             <th>Date Created</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($qrredirect as $project)
+        @foreach ($qrredirects as $qrredirect)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $project->soureURL }}</td>
-                <td>{{ $project->destinyURL }}</td>
-                <td>{{ $project->active }}</td>
-                <td>{{ $project->user_id }}</td>
-                <td>{{ date_format($project->created_at, 'jS M Y') }}</td>
+                <td>{{ $qrredirect->soureURL }}</td>
+                <td>{{ $qrredirect->destinyURL }}</td>
+                <td>{{ $qrredirect->active }}</td>
+                <td>{{ $qrredirect->user_id }}</td>
+                <td>{{ date_format($qrredirect->created_at, 'jS M Y') }}</td>
                 <td>
-                    <form action="{{ route('qrredirect.destroy', $project->id) }}" method="POST">
 
-                        <a href="{{ route('qrredirect.show', $project->id) }}" title="show">
-                            <i class="fas fa-eye text-success  fa-lg">ver</i>
+                    <form action="{{ route('qrredirect.destroy', $qrredirect->id) }}" method="POST">
+                        @if(Auth::user()->isAdmin())
+                        <a href="{{ route('qrredirect.show', $qrredirect->id) }}" title="show" class="btn btn-primary">
+                            Ver                        </a>
+
+                        <a href="{{ route('qrredirect.edit', $qrredirect->id) }}" class="btn btn-primary">
+                            Edit
+
                         </a>
+                        @endif
 
-                        <a href="{{ route('qrredirect.edit', $project->id) }}">
-                            <i class="fas fa-edit  fa-lg">edit</i>
 
-                        </a>
-
+                        <input type="hidden" name="id" value="{{$qrredirect->id}}">
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                            <i class="fas fa-trash fa-lg text-danger">del</i>
-
-                        </button>
+                        <button>Delete QR</button>
                     </form>
                 </td>
             </tr>
         @endforeach
     </table>
 
-    {!! $qrredirect->links() !!}
+    {!! $qrredirects->links() !!}
 
 @endsection

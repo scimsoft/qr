@@ -22,39 +22,46 @@
             </ul>
         </div>
     @endif
+    <div class="card">
+
+
+        <div class="card-body">
     <form action="{{ route('qrredirect.store') }}" method="POST" >
         @csrf
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group m-2">
                 <div class="form-group">
                     <strong>soureURL:</strong>
                     <input type="text" name="soureURL" class="form-control" placeholder="soureURL">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group m-2">
                 <div class="form-group">
                     <strong>destinyURL:</strong>
                     <textarea class="form-control" style="height:50px" name="destinyURL"
                               placeholder="destinyURL"></textarea>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group m-2">
                 <div class="form-group">
                     <strong>active:</strong>
                     <input type="text" name="active" class="form-control" placeholder="active">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group m-2">
                 <div class="form-group">
                     <strong>user_id:</strong>
                     <input type="text" name="user_id" class="form-control" placeholder="user_id">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <div class="form-group m-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
 
+
     </form>
+    </div>
+</div>
 @endsection

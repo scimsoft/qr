@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\QRRedirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use function use_soap_error_handler;
 
 class QRRedirectController extends Controller
 {
@@ -20,9 +22,13 @@ class QRRedirectController extends Controller
     public function index()
     {
         //
-        $qrredirect = QRRedirect::latest()->paginate(50);
+        if(Auth::user()->isAdmin()){
 
-        return view('qrredirect.index', compact('qrredirect'))
+            $qrredirects = QRRedirect::latest()->orderBy('soureURL')->paginate(50);
+        }else {
+            $qrredirects = QRRedirect::where('user_id', Auth::user()->id)->latest()->paginate(50);
+        }
+        return view('qrredirect.index', compact('qrredirects'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -34,7 +40,8 @@ class QRRedirectController extends Controller
     public function create()
     {
         //
-        return view('qrredirect.create');
+        $user=auth()->user();
+        return view('qrredirect.create',compact('user'));
     }
 
     /**
@@ -45,7 +52,6 @@ class QRRedirectController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'soureURL' => 'required',
             'destinyURL' => 'required',
@@ -53,11 +59,14 @@ class QRRedirectController extends Controller
             'user_id' => 'required'
         ]);
 
-        QRRedirect::create($request->all());
+        $qrlink = QRRedirect::create($request->all());
+        $qrlink->destinyurl = auth()->user()->baseurl . $qrlink->destinyurl;
 
         return redirect()->route('qrredirect.index')
             ->with('success', 'qrredirect created successfully.');
+
     }
+
 
     /**
      * Display the specified resource.
@@ -90,19 +99,24 @@ class QRRedirectController extends Controller
      * @param  \App\Models\QRRedirect  $qRRedirect
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QRRedirect $qRRedirect)
+    public function update(Request $request, $id)
     {
         //
-//        $request->validate([
-//            'soureURL' => 'required',
-//            'destinyURL' => 'required',
-//            'active' => 'required',
-//            'user_id' => 'required'
-//        ]);
-       
-        $ret=$qRRedirect->update($request->all());
-       // dd($ret);
-//dd($request->all());
+        $request->validate([
+            'soureURL' => 'required',
+            'destinyURL' => 'required',
+            'active' => 'required',
+            'user_id' => 'required'
+        ]);
+        //dd($request->all());
+        $qRRedirect = QRRedirect::find($id);
+        $qRRedirect->soureURL = $request->soureURL;
+
+        $qRRedirect->destinyURL = auth()->user()->baseurl .$request->destinyURL;
+        $qRRedirect->active = $request->active;
+        $qRRedirect->user_id = $request->user_id;
+
+        $qRRedirect->save();
 
         return redirect()->route('qrredirect.index')
             ->with('success', 'Project updated successfully');
@@ -114,10 +128,11 @@ class QRRedirectController extends Controller
      * @param  \App\Models\QRRedirect  $qRRedirect
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QRRedirect $qRRedirect)
+    public function destroy(Request $requets,QRRedirect $qRRedirect)
     {
         //
-        $qRRedirect->delete();
+
+        QRRedirect::find($requets->id)->delete();
 
         return redirect()->route('qrredirect.index')
             ->with('success', 'Project deleted successfully');

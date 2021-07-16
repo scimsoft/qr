@@ -15,8 +15,15 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                        <br>
+
+                        <br><br>
                         <a href="qrredirect" class="btn btn-primary">Configuracion de enlaces</a>
+
+                        @if(Auth::user()->isAdmin())
+                            <br><br>
+                            <a href="changetables" class="btn btn-primary">Cambiar Mesas</a>
+                        @endif
+
                         <br><br>
                     <a href="qrcode" class="btn btn-primary">Generate Qr</a>
                 </div>

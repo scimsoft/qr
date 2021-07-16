@@ -21,9 +21,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Auth::routes();
-Route::resource('qrredirect', QRRedirectController::class)->middleware(Authenticate::class);
-Route::get('qrcode',[QRCodeGenerator::class,'index'])->middleware(Authenticate::class);
-Route::post('generate',[QRCodeGenerator::class,'generate'])->middleware(Authenticate::class);
+Route::post('saveTable' ,[QRRedirectController::class,'saveTable'])->middleware('is_manager')->name('saveTable');
+Route::resource('qrredirect', QRRedirectController::class)->middleware('is_manager');
+
+
+Route::get('qrcode',[QRCodeGenerator::class,'index'])->middleware('is_manager');
+Route::get('changetable/$id',[QRRedirectController::class,'changetable'])->middleware('is_manager');
+
+
+
+Route::post('generate',[QRCodeGenerator::class,'generate'])->middleware('is_manager');
 Route::get('/{id}', [RedirectController::class, 'redirect'] );
 
 
