@@ -6,6 +6,7 @@ use function array_push;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class QRCodeGenerator extends Controller
 {
@@ -23,14 +24,14 @@ class QRCodeGenerator extends Controller
 
         ]);
 
-        $baseUrl = $request->input('mybaseurl')."order/table/";
-
+        //$baseUrl = $request->input('mybaseurl')."order/table/";
+        $baseUrl = "https://qr.horecalo.com/";
         $links= [];
 
         $startRange = $request->input('startrange');
         $endRange = $startRange+ $request->input('endrange');
         for($i= $startRange; $i< $endRange; $i++) {
-                $link = $baseUrl.$i;
+                $link = $baseUrl.Str::uuid();
                 array_push($links,$link);
                }
 
